@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://copeosoftwaresolutions.github.io/mailcraftstudio-mailmerge-outlook-windows/sitemap.xml
