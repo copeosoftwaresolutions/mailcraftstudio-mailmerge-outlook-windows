@@ -1,0 +1,58 @@
+# MailCraft Studio
+
+> Windows email template builder and mail merge software for Outlook. Free to start, one-time in-app purchase for premium features. No subscription. Works offline.
+
+MailCraft Studio is a native Windows desktop application for building professional email templates and running mail merges with Outlook, Hotmail, and Microsoft Live accounts. It follows a freemium model — core features are free, and a one-time in-app purchase unlocks the full premium feature set. No monthly fees, no cloud uploads, and no internet connection required.
+
+## Product Details
+
+- **Name:** MailCraft Studio
+- **Platform:** Windows 10, Windows 11
+- **Pricing:** Freemium — free core features, one-time in-app purchase for premium (no subscription)
+- **Download:** https://apps.microsoft.com/detail/9N81V7ZQ9ZS8
+- **Category:** Email template builder, mail merge software, bulk email, Outlook tools, Windows productivity
+
+## Free Features
+
+- Drag-and-drop email template builder
+- Rich text formatting and HTML editing
+- Basic mail merge for Outlook, Hotmail, and Microsoft Live accounts
+- CSV contact import with automatic field mapping
+- Mobile-optimized responsive templates with real-time preview
+- Fully offline operation
+
+## Premium Features (one-time in-app purchase)
+
+- Unlimited bulk email campaigns
+- Advanced merge tags
+- File attachments in mail merge
+- CC/BCC support
+- Full premium template library
+- Priority support
+
+## Key Differentiators
+
+- **Freemium** — meaningful free tier, no credit card required to start
+- **No subscription** — premium is a one-time purchase, not recurring
+- **Offline first** — works without an internet connection
+- **Privacy focused** — contacts and templates stay on the user's machine
+- **Outlook native** — built specifically for Microsoft Outlook, Hotmail, and Live accounts
+
+## Who It's For
+
+- Small business owners sending invoices, proposals, and client follow-ups
+- Marketers running bulk email campaigns without a cloud subscription
+- Freelancers managing client outreach and project communications
+- Sales teams sending personalized prospecting emails at scale
+- HR and administrative staff handling announcements and onboarding
+- Anyone who sends the same email repeatedly to different people
+
+## Repository Purpose
+
+This public repository serves as the official issue tracker, feature request board, documentation hub, and changelog for MailCraft Studio. The application source code is proprietary.
+
+## Links
+
+- Microsoft Store: https://apps.microsoft.com/detail/9N81V7ZQ9ZS8
+- Issue tracker: https://github.com/copeosoftwaresolutions/mailcraftstudio-mailmerge-outlook-windows/issues
+- Changelog: https://github.com/copeosoftwaresolutions/mailcraftstudio-mailmerge-outlook-windows/blob/main/CHANGELOG.md
