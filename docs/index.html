@@ -1,1 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MailCraft Studio — Email Template Builder & Mail Merge for Outlook on Windows</title>
+  <meta name="description" content="Free Windows app for building professional email templates and running mail merges with Outlook. Drag-and-drop builder, CSV import, bulk email. No subscription. Works offline." />
+  <meta name="keywords" content="mail merge, outlook mail merge, email template builder, bulk email windows, mail merge software, outlook bulk email, windows email tool, mail merge outlook, email automation windows, csv mail merge" />
 
+  <meta property="og:title" content="MailCraft Studio — Mail Merge & Email Templates for Outlook" />
+  <meta property="og:description" content="Free Windows desktop app. Build HTML email templates, run mail merges with Outlook, import CSV contacts. No subscription. Works offline." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://copeosoftwaresolutions.github.io/mailcraftstudio-mailmerge-outlook-windows/" />
+  <meta property="og:image" content="https://store-images.s-microsoft.com/image/apps.49853.14053745210298083.bf62d7d5-1c98-4840-a867-a2995cab3de8.c306c41d-84cf-432f-ab46-7d66fca6c9fd" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://copeosoftwaresolutions.github.io/mailcraftstudio-mailmerge-outlook-windows/" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MailCraft Studio",
+    "description": "Windows email template builder and mail merge software for Outlook. Free to start, no subscription, works offline.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Windows 10, Windows 11",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "downloadUrl": "https://apps.microsoft.com/detail/9N81V7ZQ9ZS8",
+    "screenshot": "https://store-images.s-microsoft.com/image/apps.49853.14053745210298083.bf62d7d5-1c98-4840-a867-a2995cab3de8.c306c41d-84cf-432f-ab46-7d66fca6c9fd",
+    "author": { "@type": "Organization", "name": "Copeo Software Solutions" },
+    "featureList": ["Drag-and-drop email template builder","Mail merge for Outlook and Hotmail","CSV contact import","Bulk email sending","Works offline","No subscription required"]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Fallback to system fonts that match Segoe UI -->
+
+  <style>
+    :root {
+      --blue: #0067b8;
+      --blue-dark: #005a9e;
+      --blue-light: #deecf9;
+      --blue-mid: #c7e0f4;
+      --text: #212121;
+      --text-secondary: #616161;
+      --text-light: #8a8a8a;
+      --border: #e5e5e5;
+      --border-light: #f0f0f0;
+      --bg: #ffffff;
+      --bg-alt: #f9f9f9;
+      --bg-blue: #f0f6fc;
+      --success: #107c10;
+      --radius: 4px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow: 0 2px 8px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      height: 52px;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius);
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-links a:hover {
+      background: var(--bg-alt);
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      background: var(--blue) !important;
+      color: white !important;
+      font-weight: 600 !important;
+      padding: 0.4rem 1rem !important;
+      border-radius: var(--radius) !important;
+      font-size: 0.875rem !important;
+      transition: background 0.15s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--blue-dark) !important;
+      text-decoration: none !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(180deg, var(--bg-blue) 0%, #ffffff 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.75rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-eyebrow .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--success);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 span { color: var(--blue); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 2.25rem;
+      line-height: 1.75;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      color: var(--text);
+      background: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: border-color 0.15s, background 0.15s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-ghost:hover {
+      border-color: #bdbdbd;
+      background: var(--bg-alt);
+      text-decoration: none;
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .trust-item svg {
+      width: 14px;
+      height: 14px;
+      color: var(--success);
+      flex-shrink: 0;
+    }
+
+    /* ── SCREENSHOT ── */
+    .screenshot-section {
+      padding: 4rem 2rem;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .screenshot-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .screenshot-frame {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .screenshot-titlebar {
+      background: #f3f3f3;
+      border-bottom: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .titlebar-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .titlebar-dots span {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .titlebar-name {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-left: 0.5rem;
+    }
+
+    .screenshot-frame img {
+      display: block;
+      width: 100%;
+    }
+
+    /* ── STATS ── */
+    .stats-row {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+    }
+
+    .stats-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      text-align: center;
+    }
+
+    .stat {
+      padding: 1rem;
+      border-right: 1px solid var(--border-light);
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-val {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-lbl {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 5rem 2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.25rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-body {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 500px;
+      line-height: 1.75;
+    }
+
+    /* ── FEATURES ── */
+    #features { background: white; }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .features-header .section-body {
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      transition: background 0.15s;
+    }
+
+    .feature-card:hover { background: var(--bg-blue); }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--blue-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.1rem;
+    }
+
+    .feature-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── HOW IT WORKS ── */
+    #how-it-works { background: var(--bg-alt); }
+
+    .how-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 1.25rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border-light);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .step-item:last-child { border-bottom: none; }
+
+    .step-num-badge {
+      width: 32px;
+      height: 32px;
+      background: var(--blue-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--blue);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-item.active .step-num-badge {
+      background: var(--blue);
+      color: white;
+    }
+
+    .step-content {}
+
+    .step-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .how-visual {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .visual-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+    }
+
+    .visual-bar {
+      height: 10px;
+      background: var(--border-light);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .visual-bar-fill {
+      height: 100%;
+      background: var(--blue);
+      border-radius: 100px;
+      transition: width 0.6s ease;
+    }
+
+    .visual-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bg-blue);
+      border: 1px solid var(--blue-mid);
+      border-radius: 100px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.78rem;
+      color: var(--blue);
+      font-weight: 500;
+    }
+
+    .visual-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .visual-email-preview {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .visual-email-preview strong { color: var(--text); }
+
+    /* ── COMPARE ── */
+    #compare { background: white; }
+
+    .compare-wrap {
+      overflow-x: auto;
+      margin-top: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    thead tr {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    th.col-highlight {
+      background: var(--bg-blue);
+      color: var(--blue);
+    }
+
+    td {
+      padding: 0.85rem 1.25rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    tr:last-child td { border-bottom: none; }
+    td:first-child { color: var(--text); font-weight: 500; }
+    td.col-highlight { background: #f5f9ff; color: var(--text); font-weight: 500; }
+
+    .yes { color: var(--success); font-weight: 600; }
+    .no { color: #d13438; }
+    .partial { color: #8a6d00; }
+
+    /* ── USE CASES ── */
+    #use-cases { background: var(--bg-alt); }
+
+    .use-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .use-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.75rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .use-card:hover {
+      box-shadow: var(--shadow);
+      border-color: #bdbdbd;
+    }
+
+    .use-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.9rem;
+      display: block;
+    }
+
+    .use-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .use-desc {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--blue);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-section p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.75;
+    }
+
+    .cta-badges {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .cta-trust {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .cta-trust svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.8;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--blue);
+      text-decoration: underline;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text-light);
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .use-grid { grid-template-columns: 1fr 1fr; }
+      .how-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .use-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      nav { padding: 0 1rem; }
+      .hero { padding: 3rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">MailCraft Studio</a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#compare">Compare</a></li>
+      <li><a href="#use-cases">Use cases</a></li>
+      <li><a href="https://github.com/copeosoftwaresolutions/mailcraftstudio-mailmerge-outlook-windows" target="_blank">GitHub</a></li>
+      <li><a href="https://get.microsoft.com/installer/download/9n81v7zq9zs8?referrer=appbadge&cid=githubpage" target="_self" class="nav-cta">Download Free</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      Free on the Microsoft Store — Windows 10 &amp; 11
+    </div>
+
+    <h1>
+      <span>Mail Merge &amp; Email Templates</span><br />
+      for Outlook on Windows
+    </h1>
+
+    <p class="hero-sub">
+      Build professional HTML email templates with drag-and-drop, import your CSV contacts, and send personalized bulk emails through Outlook — offline, no subscription required.
+    </p>
+
+    <div class="hero-actions">
+      <a href="https://get.microsoft.com/installer/download/9n81v7zq9zs8?referrer=appbadge&cid=githubpage" target="_self">
+        <img src="https://get.microsoft.com/images/en-us%20dark.svg" width="182" alt="Get it from Microsoft Store" />
+      </a>
+      <a href="https://www.youtube.com/watch?v=gwhucGQQFeg" target="_blank" class="btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M6.5 3.5l6 4.5-6 4.5V3.5z"/><path d="M3 3.5h1.5v9H3V3.5z" opacity="0.4"/></svg>
+        Watch demo
+      </a>
+    </div>
+
+    <div class="hero-trust">
+      <div class="trust-item">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 4L6 11 3 8"/>
+        </svg>
+        Free to download
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 4L6 11 3 8"/>
+        </svg>
+        No subscription
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 4L6 11 3 8"/>
+        </svg>
+        Works offline
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 4L6 11 3 8"/>
+        </svg>
+        Data stays on your PC
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREENSHOT -->
+<div class="screenshot-section">
+  <div class="screenshot-inner reveal">
+    <div class="screenshot-frame">
+      <div class="screenshot-titlebar">
+        <div class="titlebar-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="titlebar-name">MailCraft Studio — Email Template Builder</span>
+      </div>
+      <img
+        src="https://store-images.s-microsoft.com/image/apps.49853.14053745210298083.bf62d7d5-1c98-4840-a867-a2995cab3de8.c306c41d-84cf-432f-ab46-7d66fca6c9fd"
+        alt="MailCraft Studio screenshot — email template builder and mail merge for Outlook"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-row reveal">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-val">Free</div>
+      <div class="stat-lbl">To download &amp; start using</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">$0/mo</div>
+      <div class="stat-lbl">No monthly subscription</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">100%</div>
+      <div class="stat-lbl">Offline — no cloud required</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">Win 10+</div>
+      <div class="stat-lbl">Native Windows desktop app</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="features-header reveal">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">Everything you need to send great email at scale</h2>
+      <p class="section-body">A complete toolkit for email templates and mail merge — purpose-built for Windows and Outlook.</p>
+    </div>
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon">📧</div>
+        <div class="feature-title">Advanced Mail Merge for Outlook</div>
+        <div class="feature-desc">Import CSV files, map fields automatically, and send personalized bulk emails through Outlook, Hotmail, or Microsoft Live. Smart merge tags handle personalization automatically.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <div class="feature-title">Drag-and-Drop Template Builder</div>
+        <div class="feature-desc">Design professional HTML emails visually — no coding required. Add images, buttons, and content blocks. Full rich text and direct HTML editing also available.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <div class="feature-title">Mobile-Optimized Preview</div>
+        <div class="feature-desc">See exactly how your email looks on mobile and desktop before you send. Real-time responsive design checks ensure professional results on every device.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💾</div>
+        <div class="feature-title">Template Library</div>
+        <div class="feature-desc">Save and organize your best email designs for reuse. Import and export templates for easy sharing. Build a library of campaigns you can launch in seconds.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-title">Private &amp; Offline by Design</div>
+        <div class="feature-desc">Your contacts and email content never leave your PC. MailCraft Studio runs 100% offline — no cloud uploads, no data sharing, no account required to use.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <div class="feature-title">Flexible Sending Options</div>
+        <div class="feature-desc">Send bulk campaigns or individual messages. CC/BCC support, file attachments, and test email options give you full control before you commit to sending.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="how-layout">
+      <div class="reveal">
+        <div class="section-label">How it works</div>
+        <h2 class="section-title">From template to inbox in minutes</h2>
+        <p class="section-body" style="margin-bottom:2rem;">Get started quickly with built-in examples. No learning curve — open the app and you're ready to send.</p>
+
+        <div class="steps-list">
+          <div class="step-item active">
+            <div class="step-num-badge">1</div>
+            <div class="step-content">
+              <div class="step-title">Design your email template</div>
+              <div class="step-desc">Use the drag-and-drop editor to build a professional HTML email. Add your logo, images, buttons, and text blocks visually.</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num-badge">2</div>
+            <div class="step-content">
+              <div class="step-title">Import your contact list</div>
+              <div class="step-desc">Upload a CSV file. MailCraft auto-maps columns to merge fields like {{FirstName}}, {{Company}}, {{Email}} instantly.</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num-badge">3</div>
+            <div class="step-content">
+              <div class="step-title">Preview on every device</div>
+              <div class="step-desc">Check your email on mobile and desktop. Send a test to yourself to confirm everything looks perfect.</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num-badge">4</div>
+            <div class="step-content">
+              <div class="step-title">Send via Outlook</div>
+              <div class="step-desc">Connect your Outlook or Hotmail account and launch. Each recipient gets a uniquely personalized email from your address.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="how-visual reveal">
+        <div class="visual-label">Mail merge preview</div>
+        <div class="visual-email-preview">
+          <strong>To:</strong> sarah.johnson@company.com<br />
+          <strong>Subject:</strong> Hi Sarah, your proposal is ready<br /><br />
+          Dear <strong>Sarah</strong>,<br /><br />
+          Thank you for your interest in <strong>Acme Corp</strong>. Your personalized proposal for <strong>Q2 2025</strong> is attached.
+        </div>
+        <div class="visual-label" style="margin-top:0.5rem;">Contacts loaded</div>
+        <div class="visual-row">
+          <span class="visual-chip">✓ 142 contacts imported</span>
+          <span class="visual-chip">✓ Fields mapped</span>
+        </div>
+        <div class="visual-label">Sending progress</div>
+        <div style="display:flex; flex-direction:column; gap:0.5rem;">
+          <div style="display:flex; justify-content:space-between; font-size:0.78rem; color:var(--text-secondary);">
+            <span>Sending personalized emails…</span>
+            <span style="color:var(--blue); font-weight:600;">87 / 142</span>
+          </div>
+          <div class="visual-bar">
+            <div class="visual-bar-fill" style="width:61%"></div>
+          </div>
+        </div>
+        <div class="visual-row" style="margin-top:auto;">
+          <span class="visual-chip" style="background:#f1faf1; border-color:#a8d5a8; color:var(--success);">✓ 87 sent</span>
+          <span class="visual-chip">55 queued</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section id="compare">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Comparison</div>
+      <h2 class="section-title">How MailCraft Studio compares</h2>
+      <p class="section-body">The only Outlook-native desktop mail merge tool with a visual template builder — free to start, no subscription.</p>
+    </div>
+    <div class="compare-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:22%">Feature</th>
+            <th class="col-highlight">MailCraft Studio</th>
+            <th>Mailchimp</th>
+            <th>Word Mail Merge</th>
+            <th>YAMM / GMass</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cost</td>
+            <td class="col-highlight">Free + one-time upgrade</td>
+            <td>Monthly subscription</td>
+            <td>Included with Office</td>
+            <td>Monthly subscription</td>
+          </tr>
+          <tr>
+            <td>Works offline</td>
+            <td class="col-highlight"><span class="yes">✓ Yes</span></td>
+            <td><span class="no">✗ No</span></td>
+            <td><span class="yes">✓ Yes</span></td>
+            <td><span class="no">✗ No</span></td>
+          </tr>
+          <tr>
+            <td>Outlook &amp; Hotmail</td>
+            <td class="col-highlight"><span class="yes">✓ Native</span></td>
+            <td><span class="no">✗ No</span></td>
+            <td><span class="partial">~ Limited</span></td>
+            <td><span class="no">✗ Gmail only</span></td>
+          </tr>
+          <tr>
+            <td>Drag-and-drop builder</td>
+            <td class="col-highlight"><span class="yes">✓ Yes</span></td>
+            <td><span class="yes">✓ Yes</span></td>
+            <td><span class="no">✗ No</span></td>
+            <td><span class="no">✗ No</span></td>
+          </tr>
+          <tr>
+            <td>CSV import</td>
+            <td class="col-highlight"><span class="yes">✓ Auto-mapped</span></td>
+            <td><span class="yes">✓ Yes</span></td>
+            <td><span class="partial">~ Manual</span></td>
+            <td><span class="yes">✓ Yes</span></td>
+          </tr>
+          <tr>
+            <td>Data stays local</td>
+            <td class="col-highlight"><span class="yes">✓ On your PC</span></td>
+            <td><span class="no">✗ Cloud</span></td>
+            <td><span class="yes">✓ Local</span></td>
+            <td><span class="no">✗ Cloud</span></td>
+          </tr>
+          <tr>
+            <td>No subscription</td>
+            <td class="col-highlight"><span class="yes">✓ Yes</span></td>
+            <td><span class="no">✗ No</span></td>
+            <td><span class="yes">✓ Yes</span></td>
+            <td><span class="no">✗ No</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="use-cases">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Use cases</div>
+      <h2 class="section-title">Built for people who send a lot of email</h2>
+      <p class="section-body">From solo freelancers to small business teams — MailCraft Studio fits how you work.</p>
+    </div>
+    <div class="use-grid reveal">
+      <div class="use-card">
+        <span class="use-icon">🏢</span>
+        <div class="use-title">Small Businesses</div>
+        <div class="use-desc">Send personalized invoices, receipts, proposals, and follow-ups to clients without paying for an email marketing platform.</div>
+      </div>
+      <div class="use-card">
+        <span class="use-icon">📣</span>
+        <div class="use-title">Marketers</div>
+        <div class="use-desc">Run newsletters and promotional campaigns directly from Outlook. No cloud subscription, no contact limits, no data shared externally.</div>
+      </div>
+      <div class="use-card">
+        <span class="use-icon">💼</span>
+        <div class="use-title">Freelancers</div>
+        <div class="use-desc">Send professional client updates, project proposals, and onboarding emails using beautiful reusable templates.</div>
+      </div>
+      <div class="use-card">
+        <span class="use-icon">📊</span>
+        <div class="use-title">Sales Teams</div>
+        <div class="use-desc">Personalized prospecting at scale. Each recipient gets a unique, tailored message — not a generic blast.</div>
+      </div>
+      <div class="use-card">
+        <span class="use-icon">👥</span>
+        <div class="use-title">HR &amp; Admin</div>
+        <div class="use-desc">Handle staff announcements, onboarding emails, and recurring communications efficiently with saved templates.</div>
+      </div>
+      <div class="use-card">
+        <span class="use-icon">🏫</span>
+        <div class="use-title">Educators</div>
+        <div class="use-desc">Send parent or student communications, event notices, and personalized updates — simple and private.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="container reveal" style="position:relative; z-index:1;">
+    <h2>Stop copy-pasting.<br />Start sending smarter.</h2>
+    <p>Free to download. Works offline. No subscription. The easiest way to send personalized bulk emails from Outlook on Windows.</p>
+    <a href="https://get.microsoft.com/installer/download/9n81v7zq9zs8?referrer=appbadge&cid=githubpage" target="_self">
+      <img src="https://get.microsoft.com/images/en-us%20light.svg" width="200" alt="Get it from Microsoft Store" />
+    </a>
+    <div class="cta-badges">
+      <div class="cta-trust">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 4L6 11 3 8"/></svg>
+        Free to start
+      </div>
+      <div class="cta-trust">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 4L6 11 3 8"/></svg>
+        No subscription ever
+      </div>
+      <div class="cta-trust">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 4L6 11 3 8"/></svg>
+        Windows 10 &amp; 11
+      </div>
+      <div class="cta-trust">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 4L6 11 3 8"/></svg>
+        Your data stays local
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">MailCraft Studio · Copeo Software Solutions</div>
+    <ul class="footer-links">
+      <li><a href="https://get.microsoft.com/installer/download/9n81v7zq9zs8?referrer=appbadge&cid=githubpage" target="_self">Download</a></li>
+      <li><a href="https://www.youtube.com/watch?v=gwhucGQQFeg" target="_blank">Demo</a></li>
+      <li><a href="https://github.com/copeosoftwaresolutions/mailcraftstudio-mailmerge-outlook-windows" target="_blank">GitHub</a></li>
+      <li><a href="https://github.com/copeosoftwaresolutions/mailcraftstudio-mailmerge-outlook-windows/issues" target="_blank">Support</a></li>
+    </ul>
+    <div class="footer-copy">© 2025 Copeo Software Solutions</div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
